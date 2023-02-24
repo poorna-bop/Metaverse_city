@@ -69537,7 +69537,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1244798410}
         m_TargetAssemblyTypeName: WebGLSendContract, Assembly-CSharp
         m_MethodName: buyItem
         m_Mode: 1
@@ -71415,7 +71415,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1244798410}
         m_TargetAssemblyTypeName: WebGLSendContract, Assembly-CSharp
         m_MethodName: Approve
         m_Mode: 1
@@ -74148,7 +74148,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1244798411}
         m_TargetAssemblyTypeName: WebGLSignOut, Assembly-CSharp
         m_MethodName: OnSignOut
         m_Mode: 1
@@ -74208,7 +74208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7861642628491429243
 RectTransform:
   m_ObjectHideFlags: 0

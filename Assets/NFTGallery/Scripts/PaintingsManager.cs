@@ -46,6 +46,7 @@ public class PaintingsManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        UIManager.Instance.CloseGoToPanel();
         paintingWindow.SetActive(false);
         AssignPhotos();
     }
@@ -116,6 +117,7 @@ public class PaintingsManager : MonoBehaviour
     {
          if(SceneManager.GetActiveScene().name != Constants.NFTGalleryceneName)
             return;
+            
         if(photoObjects[index].photoRenderer == null)
         return;
         Material _material = new Material(Shader.Find("Standard"));

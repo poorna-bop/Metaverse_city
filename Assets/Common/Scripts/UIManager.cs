@@ -85,13 +85,13 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.OnNFTGalleryEnter();
     }
-    public void OnClickGoToBtn()
+    public void OpenGoToPanel()
     {
         Time.timeScale = 0;
         gotoPanel.SetActive(true);
         gotoBtn.SetActive(false);
     }
-    public void OnClickGoBackToBtn()
+    public void CloseGoToPanel()
     {
         Time.timeScale = 1;
         gotoPanel.SetActive(false);

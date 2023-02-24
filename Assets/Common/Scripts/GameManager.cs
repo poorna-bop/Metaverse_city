@@ -23,6 +23,14 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
+    private void OnEnable() 
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable() 
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +47,7 @@ public class GameManager : MonoBehaviour
             }
         }));
     }
-
+    
 
     public void OnStoreEnter()
     {
@@ -47,7 +55,6 @@ public class GameManager : MonoBehaviour
         return;
         lastScene = Constants.CitySceneName;
         SceneManager.LoadScene(Constants.FashionStoreSceneName);
-        PlayerManager.Instance.SetPlayerPosition(Constants.fashionStorePlayerInitialPoint,Constants.fashionStorePlayerInitialRotationPoint,true);
     }
     public void OnNFTGalleryEnter()
     {
@@ -55,7 +62,6 @@ public class GameManager : MonoBehaviour
         return;
         lastScene = Constants.CitySceneName;
         SceneManager.LoadScene(Constants.NFTGalleryceneName);
-        PlayerManager.Instance.SetPlayerPosition(Constants.nftGalleryPlayerInitialPoint,Constants.nftGalleryPlayerInitialRotationPoint,true);
     }
     public void OnCarShowroomEnter()
     {
@@ -63,7 +69,6 @@ public class GameManager : MonoBehaviour
         return;
         lastScene = Constants.CitySceneName;
         SceneManager.LoadScene(Constants.CarShowroomSceneName);
-        PlayerManager.Instance.SetPlayerPosition(Constants.nftGalleryPlayerInitialPoint,Constants.nftGalleryPlayerInitialRotationPoint,true);
     }
     
     // Update is called once per frame
@@ -81,6 +86,32 @@ public class GameManager : MonoBehaviour
             GoBackToCityScene();
         }
     }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == Constants.FashionStoreSceneName)
+        {
+            PlayerManager.Instance.SetPlayerPosition(Constants.fashionStorePlayerInitialPoint,Constants.fashionStorePlayerInitialRotationPoint);
+        }
+        if(scene.name == Constants.NFTGalleryceneName)
+        {
+            PlayerManager.Instance.SetPlayerPosition(Constants.nftGalleryPlayerInitialPoint,Constants.nftGalleryPlayerInitialRotationPoint);
+        }
+        if(scene.name == Constants.CitySceneName)
+        {
+            if(lastScene == Constants.FashionStoreSceneName)
+            {
+                PlayerManager.Instance.SetDirectPlayerPosition(Constants.cityScenePointOnFashionStoreGate,Constants.citySceneRotationPointOnFashionStoreGate);
+            }
+            else if (lastScene == Constants.NFTGalleryceneName)
+            {
+                PlayerManager.Instance.SetDirectPlayerPosition(Constants.cityScenePointOnNFTGalleryGate,Constants.citySceneRotationPointOnNFTGalleryGate);
+            }
+            else
+            {
+                PlayerManager.Instance.SetDirectPlayerPosition(Constants.cityScenePlayerInitialPoint,Constants.cityScenePlayerInitialRotationPoint);
+            }
+        }
+    }
     void GoBackToCityScene()
     {
         if(SceneManager.GetActiveScene().name == Constants.CitySceneName)
@@ -88,19 +119,6 @@ public class GameManager : MonoBehaviour
 
         lastScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(Constants.CitySceneName);
-
-        if(lastScene == Constants.FashionStoreSceneName)
-        {
-            PlayerManager.Instance.SetPlayerPosition(Constants.cityScenePointOnFashionStoreGate,Constants.citySceneRotationPointOnFashionStoreGate,true);
-        }
-        else if (lastScene == Constants.NFTGalleryceneName)
-        {
-            PlayerManager.Instance.SetPlayerPosition(Constants.cityScenePointOnNFTGalleryGate,Constants.citySceneRotationPointOnNFTGalleryGate,true);
-        }
-        else
-        {
-            PlayerManager.Instance.SetPlayerPosition(Constants.cityScenePlayerInitialPoint,Constants.cityScenePlayerInitialRotationPoint,true);
-        }
         
     }
 }

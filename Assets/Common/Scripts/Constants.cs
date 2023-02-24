@@ -16,7 +16,7 @@ public class Constants : MonoBehaviour
 
 
     // Position and Rotation Points of player on doors of each scene
-    public static Vector3 cityScenePointOnFashionStoreGate = new Vector3(-137.66f,-45.762f,-91.604f);
+    public static Vector3 cityScenePointOnFashionStoreGate = new Vector3(-137.66f,-45.853f,-91.375f);
     public static Quaternion citySceneRotationPointOnFashionStoreGate = Quaternion.Euler(0,0,0);
 
     public static Vector3 cityScenePointOnNFTGalleryGate = new Vector3(-152.418f,-45.985f,-63.007f); 

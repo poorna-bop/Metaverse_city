@@ -92,7 +92,7 @@ public class APIManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(www.downloadHandler.text);
+            //Debug.Log(www.downloadHandler.text);
             nftForChainIdResponse = JsonUtility.FromJson<RawNFTList>(www.downloadHandler.text);
             onSuccess();
         }

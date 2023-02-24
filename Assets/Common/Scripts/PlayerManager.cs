@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerManager : MonoBehaviour
 {
     #region  private variables
@@ -64,6 +65,7 @@ public class PlayerManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
     }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -138,10 +140,8 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    IEnumerator changePosition(Vector3 _position, Quaternion _rotation,bool direct)
+    IEnumerator changePosition(Vector3 _position, Quaternion _rotation)
     {   
-        if(direct)
-            APIManager.Instance.Loading();
         move = false;
         characterController.enabled = false;
         CameraManagement.Instance.DisableFreeLookCamera();
@@ -151,8 +151,9 @@ public class PlayerManager : MonoBehaviour
         CameraManagement.Instance.EnableFreeLookCamera();
         characterController.enabled = true;
         move = true;
-        APIManager.Instance.OffLoading();
+        //APIManager.Instance.OffLoading();
     }
+    
     #endregion
 
     #region public methods
@@ -173,9 +174,15 @@ public class PlayerManager : MonoBehaviour
     {
         return move;
     }
-    public void SetPlayerPosition(Vector3 _position, Quaternion _rotation, bool direct = false)
+    
+    public void SetDirectPlayerPosition(Vector3 _position, Quaternion _rotation, bool direct = false)
     {
-        StartCoroutine(changePosition(_position,_rotation,direct));
+        transform.position = _position;
+        transform.rotation = _rotation;
+    }
+    public void SetPlayerPosition(Vector3 _position, Quaternion _rotation)
+    {
+        StartCoroutine(changePosition(_position,_rotation));
     }
     
     public void SelectClint()
