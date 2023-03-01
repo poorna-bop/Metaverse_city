@@ -213,9 +213,10 @@ public class WebGLSendContractExample : MonoBehaviour
     {
         string method = "approve";
         //string contract = selectedChain;
-        string contract = "0xF1A577ee0C31Ba3b2B246e0B9e147127A58b1963";
-        string to1 = "0xe2eD69B4E3eA344aE368aC3836aaf210874E61Bd";
-        string tempToken = "1000000000000000";
+       // string contract = "0xF1A577ee0C31Ba3b2B246e0B9e147127A58b1963";
+        string contract = PaintingsManager.Instance.currentPainting.currentCurrency;
+        string to1 = "0xc8caE4392cC4f1Cf1E5477FDf18a10B29f2d9041";
+        string tempToken = "1000000000000000" ;
         Debug.Log($"[\"{to1}\",\"{tempToken}]\"");
         string args = $"[\"{to1}\",\"{tempToken}\"]";
 

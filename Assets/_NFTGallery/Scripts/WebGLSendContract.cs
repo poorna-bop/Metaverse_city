@@ -51,37 +51,6 @@ public class WebGLSendContract : MonoBehaviour
     #endregion
 
     #region public methods
-    // public async void OnPuchase()
-    // {
-    //     await Approve();
-    // }
-    // private bool isApproveClick = false;
-    // public async void OnApprove()
-    // {
-    //     PaintingsManager.Instance.btnApprove.gameObject.SetActive(false);
-    //     PaintingsManager.Instance.btnBuyItem.gameObject.SetActive(true);
-    //     Approve();
-    //     Debug.Log("Approve Complete");
-    // }
-    // public async void OnBuy()
-    // {
-    //      buyItem();
-    //     Debug.Log("Buy Complete");
-    // }
-    // private async Task<string> OnPurchaseItem()
-    // {
-    //      string response = null;
-
-    //     // string responseOuter = await Approve(async () =>
-    //     // {
-    //     //     response = await buyItem(() => { }, (error) => { });
-    //     // }, (error) =>
-    //     // {
-
-    //     // });
-
-    //     return response;
-    // }
 
     async public void buyItem()
     {
