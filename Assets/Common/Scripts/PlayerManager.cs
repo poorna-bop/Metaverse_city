@@ -89,7 +89,6 @@ public class PlayerManager : MonoBehaviour
     void LateUpdate()
     {
         CalculatePlayerMovement();
-        EvaluatePlayerAnimation();
     }
     #endregion
 
@@ -104,6 +103,7 @@ public class PlayerManager : MonoBehaviour
         
         //get direction with respect to input axis
         Vector3 direction = new Vector3(InputManager.horizontal, 0f, InputManager.vertical).normalized;
+        
         if (direction.magnitude > 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + CameraManagement.Instance.GetMainCameraTransform().eulerAngles.y;
@@ -115,30 +115,7 @@ public class PlayerManager : MonoBehaviour
         playerVelocity.y += gravityValue;
         MoveCharacterBy(playerVelocity*Time.deltaTime);
     }
-    void EvaluatePlayerAnimation()
-    {
-        if (InputManager.Instance.IsKeyPressed())
-        {
-            switch (AnimationState)
-            {
-                case 0:
-                    AnimationState = 1;
-                    break;
-            }
-
-        }
-
-        if (!InputManager.Instance.IsKeyPressed())
-        {
-            switch (AnimationState)
-            {
-                case 1:
-                    AnimationState = 0;
-                    break;
-
-            }
-        }
-    }
+   
 
     IEnumerator changePosition(Vector3 _position, Quaternion _rotation)
     {   

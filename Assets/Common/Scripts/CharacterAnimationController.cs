@@ -49,18 +49,80 @@ public class CharacterAnimationController : MonoBehaviour
         PlayerManager.Instance.MoveCharacterBy(velocity);
     }
    
+   void Jump()
+   {
+        if(InputManager.jump)
+        {
+            anim.SetTrigger("jump");
+            InputManager.jump = false;
+        }
+
+
+   }
     void LateUpdate()
     {
-        if (InputManager.Instance.IsKeyPressed())
+
+        Jump();
+        if(InputManager.Instance.IsJumpKeyPress())
         {
-            switch (AnimationState)
+            InputManager.jump = true;
+            return;
+        }
+        
+
+        if(InputManager.Instance.IsUpKeyPress())
+        {
+            if(InputManager.Instance.IsRunKeyPress())
+            return;
+
+            switch(AnimationState)
             {
                 case 0:
                     AnimationState = 1;
+                break;
+
+                case 3:
+                    AnimationState = 1;
+                break; 
+
+                case 4:
+                    AnimationState = 5;
+                break;
+            }
+        }
+        // if(InputManager.Instance.IsDownKeyPress())
+        // {
+        //     AnimationState = 1;
+        // }
+        // if(InputManager.Instance.IsLeftKeyPress())
+        // {
+        //     AnimationState = 1;
+        // }
+        // if(InputManager.Instance.IsRightKeyPress())
+        // {
+        //     AnimationState = 1;
+        // }
+        if(InputManager.Instance.IsRunKeyPress())
+        {
+            switch(AnimationState)
+            {
+                case 0:
+                    AnimationState = 2;
+                break;
+
+                case 1:
+                    AnimationState = 4;
+                    break;
+                
+                case 3:
+                    AnimationState = 2;
+                    break;
+                case 5:
+                    AnimationState = 4;
                     break;
             }
-
         }
+
 
         if (!InputManager.Instance.IsKeyPressed())
         {
@@ -69,6 +131,17 @@ public class CharacterAnimationController : MonoBehaviour
                 case 1:
                     AnimationState = 0;
                     break;
+                case 2:
+                    AnimationState = 3;
+                break;
+
+                case 4:
+                    AnimationState = 3;
+                break;
+
+                case 5:
+                    AnimationState = 0; 
+                break;
 
             }
         }

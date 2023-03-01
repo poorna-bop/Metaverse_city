@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/City/Scenes/CityScene/CityScene.unity
+    path: Assets/_City/Scenes/CityScene/CityScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/StoreScene/StoreScene/StoreScene.unity
+    path: Assets/_NFTGallery/Scenes/NFTGalleryScene.unity
+    guid: f64400e09e95b4391b49ac43e5941f34
+  - enabled: 1
+    path: Assets/_FashionStore/StoreScene/StoreScene.unity
     guid: 173cb6ad0534642fab305b186aec8854
   - enabled: 1
-    path: Assets/NFTGallery/Scenes/NFTGalleryScene.unity
-    guid: f64400e09e95b4391b49ac43e5941f34
+    path: Assets/_Showroom/Showroom.unity
+    guid: 7d97206c59c9e4ffe89b299fcc002dfb
   m_configObjects: {}

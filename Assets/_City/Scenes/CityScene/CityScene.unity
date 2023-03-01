@@ -33001,7 +33001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2368611513924717887
 GameObject:
   m_ObjectHideFlags: 0
@@ -33019,7 +33019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &2418303156345508359
 GameObject:
   m_ObjectHideFlags: 0
@@ -33910,7 +33910,7 @@ MonoBehaviour:
   clint: {fileID: 2368611513924717887}
   metaboy: {fileID: 2368611513484544051}
   relyna: {fileID: 287007197720365776}
-  playerAnimator: {fileID: 3179425126893432914}
+  playerAnimator: {fileID: 9040136119297509619}
   maxSpeed: 5
   duration: 1
   gravityValue: -9.81
