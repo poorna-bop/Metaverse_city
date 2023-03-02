@@ -81,6 +81,10 @@ public class CharacterAnimationController : MonoBehaviour
                     AnimationState = 1;
                 break;
 
+                case 2:
+                    AnimationState = 5;
+                break;
+
                 case 3:
                     AnimationState = 1;
                 break; 
@@ -90,18 +94,6 @@ public class CharacterAnimationController : MonoBehaviour
                 break;
             }
         }
-        // if(InputManager.Instance.IsDownKeyPress())
-        // {
-        //     AnimationState = 1;
-        // }
-        // if(InputManager.Instance.IsLeftKeyPress())
-        // {
-        //     AnimationState = 1;
-        // }
-        // if(InputManager.Instance.IsRightKeyPress())
-        // {
-        //     AnimationState = 1;
-        // }
         if(InputManager.Instance.IsRunKeyPress())
         {
             switch(AnimationState)

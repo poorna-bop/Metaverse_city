@@ -111,8 +111,8 @@ public class PlayerManager : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, currentAngle, 0);
         } 
 
-        //To make player grounded
-        playerVelocity.y += gravityValue;
+        playerVelocity.y += (gravityValue * Time.deltaTime);
+
         MoveCharacterBy(playerVelocity*Time.deltaTime);
     }
    
