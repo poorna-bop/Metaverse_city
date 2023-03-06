@@ -10,8 +10,8 @@ public class Constants : MonoBehaviour
     public static string FashionStoreSceneName = "StoreScene";
 
     public static string FashionStoreEnterTag = "StoreDoor";
-    public static string CarShowroomEnterTag = "";
-    public static string NFTGalleryEnterTag = "NFTGalleryPoint";
+    public static string CarShowroomEnterTag = "CarShowroomDoor";
+    public static string NFTGalleryEnterTag = "NFTGalleryDoor";
 
 
 
@@ -21,6 +21,9 @@ public class Constants : MonoBehaviour
 
     public static Vector3 cityScenePointOnNFTGalleryGate = new Vector3(-152.418f,-45.985f,-63.007f); 
     public static Quaternion citySceneRotationPointOnNFTGalleryGate = Quaternion.Euler(0,180,0);
+
+    public static Vector3 cityScenePointOnCarShowroomGate = new Vector3(-122f,-46.278f,-74.3f); 
+    public static Quaternion citySceneRotationPointOnCarShowroomGate = Quaternion.Euler(0,180,0);
 
 
     // Initial Position and Rotation Points of player on each scene
@@ -32,4 +35,7 @@ public class Constants : MonoBehaviour
 
     public static Vector3 nftGalleryPlayerInitialPoint = new Vector3(-1f,0,20f);
     public static Quaternion nftGalleryPlayerInitialRotationPoint = Quaternion.Euler(0,180,0);
+
+     public static Vector3 carShowroomPlayerInitialPoint = new Vector3(9f,0,3f);
+    public static Quaternion carShowroomPlayerInitialRotationPoint = Quaternion.Euler(0,180,0);
 }

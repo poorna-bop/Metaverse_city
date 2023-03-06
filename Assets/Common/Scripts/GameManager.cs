@@ -96,6 +96,10 @@ public class GameManager : MonoBehaviour
         {
             PlayerManager.Instance.SetPlayerPosition(Constants.nftGalleryPlayerInitialPoint,Constants.nftGalleryPlayerInitialRotationPoint);
         }
+        if(scene.name == Constants.CarShowroomSceneName)
+        {
+            PlayerManager.Instance.SetPlayerPosition(Constants.carShowroomPlayerInitialPoint,Constants.carShowroomPlayerInitialRotationPoint);
+        }
         if(scene.name == Constants.CitySceneName)
         {
             if(lastScene == Constants.FashionStoreSceneName)
@@ -105,6 +109,10 @@ public class GameManager : MonoBehaviour
             else if (lastScene == Constants.NFTGalleryceneName)
             {
                 PlayerManager.Instance.SetDirectPlayerPosition(Constants.cityScenePointOnNFTGalleryGate,Constants.citySceneRotationPointOnNFTGalleryGate);
+            }
+            else if (lastScene == Constants.CarShowroomSceneName)
+            {
+                PlayerManager.Instance.SetDirectPlayerPosition(Constants.cityScenePointOnCarShowroomGate,Constants.citySceneRotationPointOnCarShowroomGate);
             }
             else
             {

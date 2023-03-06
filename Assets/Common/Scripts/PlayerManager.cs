@@ -83,6 +83,10 @@ public class PlayerManager : MonoBehaviour
         {
             GameManager.Instance.OnNFTGalleryEnter();
         }
+        if(other.gameObject.tag == Constants.CarShowroomEnterTag)
+        {
+            GameManager.Instance.OnCarShowroomEnter();
+        }
     }
 
     // Update is called once per frame
