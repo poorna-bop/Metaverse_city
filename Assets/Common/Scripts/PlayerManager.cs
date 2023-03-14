@@ -115,7 +115,7 @@ public class PlayerManager : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, currentAngle, 0);
         } 
 
-        playerVelocity.y += (gravityValue * Time.deltaTime);
+        playerVelocity.y += (gravityValue * Time.deltaTime*3);
 
         MoveCharacterBy(playerVelocity*Time.deltaTime);
     }

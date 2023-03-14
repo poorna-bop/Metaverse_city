@@ -11,6 +11,23 @@ public class RawNFT
     public string itemId;
     public string uri_link;
 }
+public class NFTData
+{
+    public string tokenId;
+    public string itemId;
+    public string uri_link;
+    public string name;
+    public string description;
+    public string contract_address;
+    public NFTAttribute[] attributes;
+    public string owner_address;
+    public int chainId;
+    public string saleId;
+    public string category;
+    public string collection;
+    public string royalty;
+    public string imageURL;
+}
 
 [Serializable]
 public class NFT
@@ -78,6 +95,10 @@ public class NFTManager : MonoBehaviour
    #endregion
 
    #region public variables
+   public List<NFTData> AllNFTS = new List<NFTData>();
+   
+//    public List<RawNFT2> FashionStoreNFTs = new List<RawNFT2>();
+//    public List<RawNFT2> GalleryNFTs = new List<RawNFT2>();
     
     public static NFTManager Instance;
     void Awake()
@@ -95,9 +116,13 @@ public class NFTManager : MonoBehaviour
    #endregion
 
    #region unity callbacks
+   private void Start() {
+    
+   }
    #endregion
 
    #region private methods
+   
    #endregion
 
    #region public methods

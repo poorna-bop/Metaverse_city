@@ -7624,7 +7624,6 @@ MonoBehaviour:
   - {fileID: 1922736496}
   - {fileID: 1069875359}
   - {fileID: 879016501}
-  img: {fileID: 627069249}
   buyNFTPopup: {fileID: 7861642628128805611}
   currentPainting: {fileID: 0}
   paintingWindow: {fileID: 7861642627559115897}

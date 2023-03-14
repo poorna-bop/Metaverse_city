@@ -38,7 +38,9 @@ public class StoreUI : MonoBehaviour
         photoDescriptionTxt.text = _painting.paintingDescription;
         photoImg.texture = PaintingsManager.Instance.currentPainting.img;
         //photoTokenIdTxt.text = "<b>Token Id :  </b>" + _painting.token_id;
-        nftItemDetails = await APIManager.Instance.IGetSaleDetailsFromTokenId(GameSceneManager.Instance.chainID, _painting.token_id);
+
+        //Debug.Log("current "+PaintingsManager.Instance.currentPainting);
+        nftItemDetails = await APIManager.Instance.IGetSaleDetailsFromTokenId(GameManager.Instance.chainID, _painting.token_id);
 
         //currencyImg.sprite = GameSceneManager.Instance.currencyData[nftItemDetails.currencyName];
         if (nftItemDetails.itemId == "0" || nftItemDetails.sold)

@@ -25,7 +25,7 @@ public class PaintingsManager : MonoBehaviour
     public GameObject successPanel;
     public GameObject failPanel;
     public PhotoObject[] photoObjects;
-    public RawImage img;
+
     public GameObject buyNFTPopup;
 
     [HideInInspector]
@@ -33,6 +33,7 @@ public class PaintingsManager : MonoBehaviour
     public GameObject paintingWindow;
     int downIndex = 0;
     int upIndex = 39;
+    int fashionIndex = 0;
    
     public static bool isPaintingOpend = false;
 
@@ -49,6 +50,7 @@ public class PaintingsManager : MonoBehaviour
         UIManager.Instance.CloseGoToPanel();
         paintingWindow.SetActive(false);
         AssignPhotos();
+        //GetData();
     }
 
     #endregion
@@ -56,7 +58,7 @@ public class PaintingsManager : MonoBehaviour
     #region private methods
     private void AssignPhotos()
     {
-        StartCoroutine(APIManager.Instance.IGetNFTsForChainId(GameSceneManager.Instance.chainID, async () =>
+        StartCoroutine(APIManager.Instance.IGetNFTsForChainId(GameManager.Instance.chainID, async () =>
         {
             GetData();
         }));
@@ -67,56 +69,84 @@ public class PaintingsManager : MonoBehaviour
     {
         downIndex = 0;
         upIndex = 38;
+        fashionIndex = 0;
     
         for (int i = 0; i < APIManager.Instance.nftForChainIdResponse.data.Length; i++)
         {
-            if(SceneManager.GetActiveScene().name != Constants.NFTGalleryceneName)
-            break;
-            NFT nftDetails = await APIManager.Instance.IGetNFTDetails(APIManager.Instance.nftForChainIdResponse.data[i].uri_link);
-            //NFT nftDetails = APIManager.Instance.allNFTsList[i];
+
+            if(SceneManager.GetActiveScene().name == Constants.FashionStoreSceneName)
+            {
+                NFT nftDetails = await APIManager.Instance.IGetNFTDetails(APIManager.Instance.nftForChainIdResponse.data[i].uri_link);
             
-            if (nftDetails.category == "MTW")
-            {
-                photoObjects[downIndex].painting.moreinfoLink = APIManager.Instance.nftForChainIdResponse.data[i].uri_link;
-                photoObjects[downIndex].painting.token_id = APIManager.Instance.nftForChainIdResponse.data[i].tokenId;
-                photoObjects[downIndex].painting.item_id = APIManager.Instance.nftForChainIdResponse.data[i].itemId;
-                photoObjects[downIndex].painting.chain_id = GameSceneManager.Instance.chainID;
-                if (photoObjects[downIndex].painting != null)
-                    photoObjects[downIndex].painting.gameObject.SetActive(true);
-                photoObjects[downIndex].painting.paintingName = nftDetails.name;
-                photoObjects[downIndex].painting.category = nftDetails.category;
-                photoObjects[downIndex].painting.collection = nftDetails.collection;
-                photoObjects[downIndex].painting.paintingDescription = nftDetails.description;
-                photoObjects[downIndex].imgURL = nftDetails.image;
-                photoObjects[downIndex].painting.SetData();
-                IGETImage(downIndex);
-                downIndex++;
+                if (nftDetails.category == "FASHION" && fashionIndex < photoObjects.Length)
+                {
+                    photoObjects[fashionIndex].painting.moreinfoLink = APIManager.Instance.nftForChainIdResponse.data[i].uri_link;
+                    photoObjects[fashionIndex].painting.token_id = APIManager.Instance.nftForChainIdResponse.data[i].tokenId;
+                    photoObjects[fashionIndex].painting.item_id = APIManager.Instance.nftForChainIdResponse.data[i].itemId;
+                    photoObjects[fashionIndex].painting.chain_id = GameManager.Instance.chainID;
+                    if (photoObjects[fashionIndex].painting != null)
+                        photoObjects[fashionIndex].painting.gameObject.SetActive(true);
+                    photoObjects[fashionIndex].painting.paintingName = nftDetails.name;
+                    photoObjects[fashionIndex].painting.category = nftDetails.category;
+                    photoObjects[fashionIndex].painting.collection = nftDetails.collection;
+                    photoObjects[fashionIndex].painting.paintingDescription = nftDetails.description;
+                    photoObjects[fashionIndex].imgURL = nftDetails.image;
+                    photoObjects[fashionIndex].painting.SetData();
+                    IGETImage(fashionIndex);
+                    fashionIndex++;
+                }
             }
-            if (nftDetails.category == "VIPS")
+
+            else if(SceneManager.GetActiveScene().name == Constants.NFTGalleryceneName)
             {
-                photoObjects[upIndex].painting.moreinfoLink = APIManager.Instance.nftForChainIdResponse.data[i].uri_link;
-                photoObjects[upIndex].painting.token_id = APIManager.Instance.nftForChainIdResponse.data[i].tokenId;
-                photoObjects[upIndex].painting.item_id = APIManager.Instance.nftForChainIdResponse.data[i].itemId;
-                photoObjects[upIndex].painting.chain_id = GameSceneManager.Instance.chainID;
-                if (photoObjects[downIndex].painting != null)
-                    photoObjects[upIndex].painting.gameObject.SetActive(true);
-                photoObjects[upIndex].painting.paintingName = nftDetails.name;
-                photoObjects[upIndex].painting.category = nftDetails.category;
-                photoObjects[upIndex].painting.collection = nftDetails.collection;
-                photoObjects[upIndex].painting.paintingDescription = nftDetails.description;
-                photoObjects[upIndex].imgURL = nftDetails.image;
-                photoObjects[upIndex].painting.SetData();
-                IGETImage(upIndex);
-                upIndex++;
+                NFT nftDetails = await APIManager.Instance.IGetNFTDetails(APIManager.Instance.nftForChainIdResponse.data[i].uri_link);
+
+                if((upIndex)>=photoObjects.Length)
+                return;
+
+                if (nftDetails.category == "MTW")
+                {
+                    photoObjects[downIndex].painting.moreinfoLink = APIManager.Instance.nftForChainIdResponse.data[i].uri_link;
+                    photoObjects[downIndex].painting.token_id = APIManager.Instance.nftForChainIdResponse.data[i].tokenId;
+                    photoObjects[downIndex].painting.item_id = APIManager.Instance.nftForChainIdResponse.data[i].itemId;
+                    photoObjects[downIndex].painting.chain_id = GameManager.Instance.chainID;
+                    if (photoObjects[downIndex].painting != null)
+                        photoObjects[downIndex].painting.gameObject.SetActive(true);
+                    photoObjects[downIndex].painting.paintingName = nftDetails.name;
+                    photoObjects[downIndex].painting.category = nftDetails.category;
+                    photoObjects[downIndex].painting.collection = nftDetails.collection;
+                    photoObjects[downIndex].painting.paintingDescription = nftDetails.description;
+                    photoObjects[downIndex].imgURL = nftDetails.image;
+                    photoObjects[downIndex].painting.SetData();
+                    IGETImage(downIndex);
+                    downIndex++;
+                }
+                if (nftDetails.category == "VIPS")
+                {
+                    photoObjects[upIndex].painting.moreinfoLink = APIManager.Instance.nftForChainIdResponse.data[i].uri_link;
+                    photoObjects[upIndex].painting.token_id = APIManager.Instance.nftForChainIdResponse.data[i].tokenId;
+                    photoObjects[upIndex].painting.item_id = APIManager.Instance.nftForChainIdResponse.data[i].itemId;
+                    photoObjects[upIndex].painting.chain_id = GameManager.Instance.chainID;
+                    if (photoObjects[upIndex].painting != null)
+                        photoObjects[upIndex].painting.gameObject.SetActive(true);
+                    photoObjects[upIndex].painting.paintingName = nftDetails.name;
+                    photoObjects[upIndex].painting.category = nftDetails.category;
+                    photoObjects[upIndex].painting.collection = nftDetails.collection;
+                    photoObjects[upIndex].painting.paintingDescription = nftDetails.description;
+                    photoObjects[upIndex].imgURL = nftDetails.image;
+                    photoObjects[upIndex].painting.SetData();
+                    IGETImage(upIndex);
+                    upIndex++;
+                }
             }
         }
     }
 
-
     public async void IGETImage(int index)
     {
-         if(SceneManager.GetActiveScene().name != Constants.NFTGalleryceneName)
-            return;
+        
+        // if(SceneManager.GetActiveScene().name != Constants.NFTGalleryceneName)
+        //     return;
             
         if(photoObjects[index].photoRenderer == null)
         return;
@@ -125,6 +155,7 @@ public class PaintingsManager : MonoBehaviour
         _materials[1].SetFloat("_Glossiness", 0);
         _materials[1].SetFloat("_SpecularHighlights", 0);
         string img_url = photoObjects[index].imgURL;
+
         if (img_url == "" || img_url == null)
         {
             //Debug.Log("image not available");
